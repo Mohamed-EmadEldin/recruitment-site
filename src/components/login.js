@@ -8,8 +8,8 @@ function Login() {
 
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
-    // const dispatch = useDispatch()
-    // const [cv, setUser] = useState('')
+    const dispatch = useDispatch()
+    const [cv, setUser] = useState('')
 
 
 
