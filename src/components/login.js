@@ -1,14 +1,15 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 // import axios from "axios";
 import {useDispatch} from "react-redux";
 import {login, passwordTyped, userNameTyped} from "../store/actions";
+
 
 function Login() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     // const [cv, setUser] = useState('')
 
 
@@ -37,6 +38,8 @@ function Login() {
         //     console.log( 'err' , err)
         // }
     }
+
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
