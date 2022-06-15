@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import JobCard from "./JobCard";
 
+import '../style.css'
 
 let AllJobs = () => {
     let [jobs, setJobs] = useState([]);
@@ -14,14 +15,11 @@ let AllJobs = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:8000/jobs/list')
+        fetch(process.env.REACT_APP_JOBS_URL)
             .then((response) => {
-                console.log(response)
                 return response.json()
             })
             .then((data) => {
-                console.log('data')
-                console.log(data)
                 setJobs(data)
             })
             .catch((err) => {
