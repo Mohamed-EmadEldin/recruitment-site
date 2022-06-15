@@ -1,13 +1,13 @@
-import {NavLink, useLocation} from "react-router-dom";
+import {NavLink} from "react-router-dom"; //useLocation
 import {Button} from "primereact/button";
 
 const Navigation = () => {
 
-    let location = useLocation();
+    // let location = useLocation();
 
-    if(location.pathname === '/'){
-        return null
-    }
+    // if(location.pathname === '/'){
+    //     return null
+    // }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-expand-md mx-5">
@@ -22,7 +22,7 @@ const Navigation = () => {
                 <ul className="navbar-nav">
                     <li className="nav-item px-3">
                         <NavLink to={"/about"} className={'btn'}>
-                            <Button label={'about'} className="p-button p-button-sm p-button-text p-button-info"></Button>
+                            <Button label={'About'} className="p-button p-button-sm p-button-text p-button-info"></Button>
                         </NavLink>
                     </li>
                 </ul>

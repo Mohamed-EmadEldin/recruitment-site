@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import JobCard from "./JobCard";
 
 import '../style.css'
+import './Job.css'
 
 let AllJobs = () => {
     let [jobs, setJobs] = useState([]);
@@ -44,7 +45,7 @@ let AllJobs = () => {
     }
 
     return (
-        <div className="d-flex flex-wrap align-items-center justify-content-center vh-100">
+        <div className="d-flex flex-wrap align-items-center justify-content-center vh-100 jobs">
             {renderSingers()}
         </div>
     )

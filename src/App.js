@@ -9,6 +9,7 @@ import JobDetails from "./components/JobDetails/JobDetails"
 import About from "./components/core/About";
 import Error from "./components/core/Error";
 import Navigation from "./components/core/Navigation";
+import Home from "./components/home/Home";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
             <BrowserRouter>
                 <Navigation/>
                 <Routes>
-                    <Route path={"/"} element={<Signup/>}></Route>
+                    <Route path={"/"} element={<Home/>}></Route>
                     <Route path={"signup"} element={<Signup/>}></Route>
                     <Route path={"login"} element={<Login/>}></Route>
                     <Route path={"jobs"} element={<Jobs/>}></Route>
