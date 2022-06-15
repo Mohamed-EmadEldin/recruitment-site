@@ -6,6 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./store/reducer";
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle'
+
+import "primereact/resources/themes/vela-purple/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  <Provider store={store}>

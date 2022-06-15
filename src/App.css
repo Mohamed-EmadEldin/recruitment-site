@@ -50,3 +50,13 @@
   width:100%;
   gap:10px
 }
+
+* {
+  color: #e8e6e3;
+  background-color: #181a1b;
+}
+
+p-card {
+  background: #181a1b !important;
+}
+
