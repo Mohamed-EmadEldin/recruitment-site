@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.form-card
+{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:30%
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  gap:10px
+}

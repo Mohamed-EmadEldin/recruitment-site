@@ -1,7 +1,12 @@
-import {useState} from "react";
-// import axios from "axios";
+import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
+
+import {Card} from 'primereact/card';
+import {InputText} from "primereact/inputtext";
+
 import {login, passwordTyped, userNameTyped} from "../store/actions";
+
+
 
 function Login() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -37,10 +42,13 @@ function Login() {
         //     console.log( 'err' , err)
         // }
     }
+
+
     return (
+        <Card className={'form-card'}>
         <div>
-            <form onSubmit={handleSubmit}>
-                <input
+            <form onSubmit={handleSubmit} className={'form-container'}>
+                <InputText
                     name={'username'}
                     placeholder={'username'}
                     type={'text'}
@@ -53,7 +61,7 @@ function Login() {
                     }}
                 />
 
-                <input
+                <InputText
                     name={'password'}
                     placeholder={'password'}
                     type={'password'}
@@ -67,6 +75,7 @@ function Login() {
                <button type={'submit'}> submit</button>
             </form>
         </div>
+        </Card>
     )
 }
 
