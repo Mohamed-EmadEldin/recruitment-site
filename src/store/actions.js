@@ -41,6 +41,7 @@ export const login = (username,password) => {
             .post(URL,fd)
             .then(res => {
                 let token = JSON.stringify(res.data)
+                localStorage.setItem('token', token)
                 dispatch(loggedIn(token))
                 console.log(token)
             })
