@@ -1,0 +1,6 @@
+.container {
+    height: fit-content;
+}
+body{
+    overflow: auto !important;
+}
