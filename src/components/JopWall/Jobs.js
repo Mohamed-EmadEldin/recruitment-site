@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import JobCard from "./JobCard";
 
 import '../style.css'
-import './Job.css'
 
 let AllJobs = () => {
     let [jobs, setJobs] = useState([]);

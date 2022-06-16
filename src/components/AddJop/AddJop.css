@@ -1,6 +1,4 @@
 .container {
     height: fit-content;
-}
-body{
-    overflow: auto !important;
+    width: 70% !important;
 }

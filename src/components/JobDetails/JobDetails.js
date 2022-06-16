@@ -3,6 +3,8 @@ import {NavLink, useParams} from "react-router-dom";
 import {Image} from "primereact/image";
 import {Button} from "primereact/button";
 
+import './JobDetails.css'
+
 let JobDetails = () => {
 
     let [job, setJob] = useState([])
@@ -45,7 +47,7 @@ let JobDetails = () => {
     let renderJob = () => {
         if (job.id) {
             return (
-                <div className={'container my-5 py-5 vh-10 row here'}>
+                <div className={'details my-5 py-5 vh-10 row'}>
                     <div className={'d-flex align-items-center justify-content-center text-center row col-lg-11 col-sm-12'}>
                         <div className={'d-flex-column col-sm-12 col-lg-6 col-md-6 order-1 order-lg-0 order-md-0'}>
                             <p className={'h3'}>
@@ -60,7 +62,7 @@ let JobDetails = () => {
                                    alt={`${job.name}`} src={job.image}></Image>
                         </div>
                     </div>
-                    <div className={'d-flex flex-column col-lg-1'}>
+                    <div className={'d-flex flex-column col-lg-1 justify-content-center'}>
                         {applyButton}
                         {backButton}
                     </div>
