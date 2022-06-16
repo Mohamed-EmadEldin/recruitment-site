@@ -12,9 +12,8 @@ let CreateForm = () => {
     let [name, setName] = useState('')
     let [description, setDescription] = useState('')
     let [image, setImage] = useState('')
-    let [tags, setTags] = useState([])
+    let [tags, setTags] = useState(null)
     let [selectedTags, setSelectedTags] = useState(null);
-
 
     let create = async () => {
         let url = process.env.REACT_APP_CREATE_JOB
@@ -41,7 +40,7 @@ let CreateForm = () => {
         alert('created')
     }
 
-    let errorCreating = () => {
+    let error = () => {
         alert(`error`)
     }
 
@@ -51,29 +50,24 @@ let CreateForm = () => {
             await create().then(() => {
                 created()
             }).catch(() => {
-                errorCreating()
+                error()
             })
         } else {
             alert('not authorized')
         }
     }
 
-    let getTags = () => {
-        return [
-            {
-                name: '1', code: 'one'
-            },
-            {
-                name: '2', code: 'two'
-            }
-        ]
-    }
-
     useEffect(() => {
-        setToken(localStorage.getItem('token') || '')
-        setTags(getTags())
-    }, [])
-
+        setToken(localStorage.getItem('token') || '');
+        if (!(token === '')) {
+            let url = process.env.REACT_APP_TAGS_URL
+            fetch(url, {
+                method: 'GET'
+            }).then(response => response.json())
+                .then(data => setTags(data))
+                .catch(e => console.log(e))
+        }
+    }, [token])
 
     let loginForm = () => {
         return (
@@ -92,7 +86,7 @@ let CreateForm = () => {
                     </div>
                     <div className="field">
                         <label htmlFor="description" className="text-start block">Description</label>
-                        <InputTextarea id={"description"} rows={5} cols={30} className={'my-2 form-control'}
+                        <InputTextarea id={"description"} rows={3} cols={30} className={'my-2 form-control'}
                                        maxLength={250} autoResize
                                        onChange={(Event) => {
                                            setDescription(Event.target.value)
@@ -115,7 +109,7 @@ let CreateForm = () => {
                         <MultiSelect id={"tags"} value={selectedTags} options={tags} className={'form-control'}
                                      onChange={(Event) => setSelectedTags(Event.value)} optionLabel="name"
                                      placeholder="Select tags" display="chip"/>
-                        <small id="username1-help" className="text-start block">Enter job's image (url format).</small>
+                        <small id="username1-help" className="text-start block">choose tags from list.</small>
                     </div>
                     <Button onClick={AddJop} className={'my-4 p-button p-button-rounded align-self-start'}
                             type="submit">Add job</Button>
