@@ -12,7 +12,7 @@ let CreateForm = () => {
     let [name, setName] = useState('')
     let [description, setDescription] = useState('')
     let [image, setImage] = useState('')
-    let [tags, setTags] = useState(null)
+    let [tags, setTags] = useState([])
     let [selectedTags, setSelectedTags] = useState(null);
 
     let create = async () => {
