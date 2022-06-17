@@ -3,4 +3,7 @@
     width: 70%;
     margin-left: 15%;
     overflow: auto;
+    background-image: url("../../../public/assets/images/background.gif");
+    background-position: center;
+    background-size: cover;
 }
