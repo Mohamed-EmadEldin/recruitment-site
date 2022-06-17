@@ -71,7 +71,7 @@ let CreateForm = () => {
 
     let loginForm = () => {
         return (
-            <div className={'d-flex justify-content-center align-content-center vh-100'}>
+            <div className={'create-form d-flex justify-content-center align-content-center vh-100'}>
                 <form action="#"
                       className={'d-flex flex-column container border border-secondary border-opacity-50'}>
                     <p className={'h4 text-center'}>Create Job</p>

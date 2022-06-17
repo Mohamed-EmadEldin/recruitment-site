@@ -24,7 +24,7 @@ let Home = () => {
                 </section>
             </div>
             <div className="col-12 md:col-6 overflow-hidden">
-                <img src="assets/images/home_image.png" alt="home_image"
+                <img src={"assets/images/home_image.png"} alt="home_image"
                      className="md:ml-auto block md:h-full align-items-center"
                      style={{clipPath: 'polygon(10% 0, 100% 0%, 100% 100%, 0 100%)'}} draggable={"false"}/>
             </div>

@@ -57,7 +57,7 @@
 
 body {
   background-color: #17212f !important;
-  overflow: auto;
+  overflow: hidden;
 }
 
 p-card {
