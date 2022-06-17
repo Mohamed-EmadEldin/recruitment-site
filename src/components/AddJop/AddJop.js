@@ -71,55 +71,55 @@ let CreateForm = () => {
 
     let loginForm = () => {
         return (
-            <div className={'create-form d-flex justify-content-center align-content-center vh-100'}>
-                <form action="#"
-                      className={'d-flex flex-column container border border-secondary border-opacity-50'}>
-                    <p className={'h4 text-center'}>Create Job</p>
-                    <div className="field">
-                        <label htmlFor="job-name" className="text-start block">Job name</label>
-                        <InputText type={'text'} id={'job-name'} className={'my-2 form-control'}
+            <form action="#"
+                  className={'create-form d-flex flex-column container border border-secondary border-opacity-50'}>
+                <p className={'h4 text-center'}>Create Job</p>
+                <div className="field">
+                    <label htmlFor="job-name" className="text-start block">Job name</label>
+                    <InputText type={'text'} id={'job-name'} className={'my-2 form-control'}
+                               onChange={(Event) => {
+                                   setName(Event.target.value)
+                               }}
+                    />
+                    <small id="jop-name-help" className="text-start block">Enter the job's name.</small>
+                </div>
+                <div className="field">
+                    <label htmlFor="description" className="text-start block">Description</label>
+                    <InputTextarea id={"description"} rows={3} cols={30} className={'my-2 form-control'}
+                                   maxLength={250} autoResize
                                    onChange={(Event) => {
-                                       setName(Event.target.value)
+                                       setDescription(Event.target.value)
                                    }}
-                        />
-                        <small id="jop-name-help" className="text-start block">Enter the job's name.</small>
-                    </div>
-                    <div className="field">
-                        <label htmlFor="description" className="text-start block">Description</label>
-                        <InputTextarea id={"description"} rows={3} cols={30} className={'my-2 form-control'}
-                                       maxLength={250} autoResize
-                                       onChange={(Event) => {
-                                           setDescription(Event.target.value)
-                                       }}
-                        />
-                        <small id="description-help" className="text-start block">Enter job's description (max 250
-                            char).</small>
-                    </div>
-                    <div className="field">
-                        <label htmlFor="image" className="text-start block">Image url</label>
-                        <InputText type={'text'} id={'image'} className={'my-2 form-control'}
-                                   onChange={(Event) => {
-                                       setImage(Event.target.value)
-                                   }}
-                        />
-                        <small id="username1-help" className="text-start block">Enter job's image (url format).</small>
-                    </div>
-                    <div className="field">
-                        <label htmlFor="tags" className="text-start block">tags</label>
-                        <MultiSelect id={"tags"} value={selectedTags} options={tags} className={'form-control'}
-                                     onChange={(Event) => setSelectedTags(Event.value)} optionLabel="name"
-                                     placeholder="Select tags" display="chip"/>
-                        <small id="username1-help" className="text-start block">choose tags from list.</small>
-                    </div>
-                    <Button onClick={AddJop} className={'my-4 p-button p-button-rounded align-self-start'}
-                            type="submit">Add job</Button>
-                </form>
-            </div>
+                    />
+                    <small id="description-help" className="text-start block">Enter job's description (max 250
+                        char).</small>
+                </div>
+                <div className="field">
+                    <label htmlFor="image" className="text-start block">Image url</label>
+                    <InputText type={'text'} id={'image'} className={'my-2 form-control'}
+                               onChange={(Event) => {
+                                   setImage(Event.target.value)
+                               }}
+                    />
+                    <small id="username1-help" className="text-start block">Enter job's image (url format).</small>
+                </div>
+                <div className="field">
+                    <label htmlFor="tags" className="text-start block">tags</label>
+                    <MultiSelect id={"tags"} value={selectedTags} options={tags} className={'form-control'}
+                                 onChange={(Event) => setSelectedTags(Event.value)} optionLabel="name"
+                                 placeholder="Select tags" display="chip"/>
+                    <small id="username1-help" className="text-start block">choose tags from list.</small>
+                </div>
+                <Button onClick={AddJop} className={'my-4 p-button p-button-rounded align-self-start'}
+                        type="submit">Add job</Button>
+            </form>
         )
     }
 
     return (
-        loginForm()
+        <div className={'create-form d-flex justify-content-center align-content-center vh-100'}>
+            {loginForm()}
+        </div>
     )
 }
 
