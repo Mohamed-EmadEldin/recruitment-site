@@ -14,8 +14,22 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 import "primeflex/primeflex.css";
+import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+axios.interceptors.request.use((request) => {
+    let token = localStorage.getItem('token')
+    console.log(token)
+    request.headers.Authorization = "Token "+token
+    console.log(request)
+    return request
+})
+axios.interceptors.response.use((response) => {
+
+    return response
+})
+
 root.render(
  <Provider store={store}>
     <App />

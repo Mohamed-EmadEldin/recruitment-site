@@ -40,7 +40,7 @@ export const login = (username,password) => {
         axios
             .post(URL,fd)
             .then(res => {
-                let token = JSON.stringify(res.data)
+                let token = res.data.token
                 localStorage.setItem('token', token)
                 dispatch(loggedIn(token))
                 console.log(token)

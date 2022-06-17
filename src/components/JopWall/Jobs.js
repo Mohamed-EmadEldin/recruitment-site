@@ -3,10 +3,12 @@ import JobCard from "./JobCard";
 
 import '../style.css'
 import './jobs.css'
+import axios from "axios";
+import {useSelector} from "react-redux";
 
 let AllJobs = () => {
     let [jobs, setJobs] = useState([]);
-
+   const token = useSelector((state)=>state.token)
     const error = (err) => {
         return (
             <div className={'alert alert-error'}>
@@ -16,12 +18,13 @@ let AllJobs = () => {
     }
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_JOBS_URL)
+
+        axios.get(process.env.REACT_APP_JOBS_URL)
             .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                setJobs(data)
+                console.log(response.data)
+
+                setJobs(response.data)
+                console.log(token)
             })
             .catch((err) => {
                 error(err)
