@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
-import JobCard from "./JobCard";
+import MyJobCard from "./myJobCard";
 
 import '../style.css'
 import './jobs.css'
 import axios from "axios";
 import {useSelector} from "react-redux";
 
-let AllJobs = () => {
+let MyJobs = () => {
     let [jobs, setJobs] = useState([]);
    const token = useSelector((state)=>state.token)
     const error = (err) => {
@@ -19,7 +19,7 @@ let AllJobs = () => {
 
     useEffect(() => {
 
-        axios.get(process.env.REACT_APP_JOBS_URL)
+        axios.get("http://127.0.0.1:8000/jobs/myjobs")
             .then((response) => {
                 console.log(response.data)
 
@@ -35,7 +35,7 @@ let AllJobs = () => {
         if(jobs.length > 0){
             return jobs.map((job) => {
                 return (
-                    <JobCard key={job.id} job={job}></JobCard>
+                    <MyJobCard key={job.id} job={job}></MyJobCard>
                 )
             })
         }else{
@@ -55,4 +55,4 @@ let AllJobs = () => {
 
 }
 
-export default AllJobs;
+export default MyJobs;

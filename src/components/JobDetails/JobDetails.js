@@ -4,6 +4,7 @@ import {Image} from "primereact/image";
 import {Button} from "primereact/button";
 
 import './JobDetails.css'
+import {useSelector} from "react-redux";
 
 let JobDetails = () => {
 
@@ -22,14 +23,14 @@ let JobDetails = () => {
             .catch((err) => {
                 console.log(err)
             })
-    }, [id, job])
+    }, [])
 
     let error = (err) => {
         return (<div className={'alert alert-error'}>
             <p className={'h3'}>{`oOps, ${err} happened, try again later`}</p>
         </div>)
     }
-
+    const state = useSelector(state => state)
     const backButton = (
             <NavLink to={'/jobs'} className={'btn'}>
                 <Button className={'p-button p-button-outlined p-button-rounded'}
@@ -63,7 +64,10 @@ let JobDetails = () => {
                         </div>
                     </div>
                     <div className={'d-flex flex-column col-lg-1 justify-content-center'}>
-                        {applyButton}
+                        {
+
+                          state.user_type=== 'DEVELOPER'?  applyButton : null
+                        }
                         {backButton}
                     </div>
                 </div>

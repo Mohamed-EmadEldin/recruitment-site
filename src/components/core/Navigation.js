@@ -1,7 +1,11 @@
 import {NavLink} from "react-router-dom"; //useLocation
 import {Button} from "primereact/button";
+import {useSelector} from "react-redux";
+
 
 const Navigation = () => {
+
+    const state = useSelector((state)=>state)
 
     // let location = useLocation();
 
@@ -24,6 +28,24 @@ const Navigation = () => {
                         <NavLink to={"/about"} className={'btn'}>
                             <Button label={'About'} className="p-button p-button-sm p-button-text p-button-info"></Button>
                         </NavLink>
+                        {state.token ? null : <NavLink to={"/login"} className={'btn'}>
+                            <Button label={'login'} className="p-button p-button-sm p-button-text p-button-info"></Button>
+                        </NavLink>}
+                       <NavLink to={"/jobs"} className={'btn'}>
+                            <Button label={'jobs wall'} className="p-button p-button-sm p-button-text p-button-info"></Button>
+                        </NavLink>
+                        {state.user_type === 'COMPANY'?
+                            <NavLink to={"/create"} className={'btn'}>
+                                <Button label={'add a job'} className="p-button p-button-sm p-button-text p-button-info"></Button>
+                            </NavLink>
+                            :null}
+                        {state.user_type === 'COMPANY' ?
+                            <NavLink to={"/myjobs"} className={'btn'}>
+                                <Button label={'my jobs'}
+                                        className="p-button p-button-sm p-button-text p-button-info"></Button>
+                            </NavLink>
+                            : null}
+
                     </li>
                 </ul>
             </div>

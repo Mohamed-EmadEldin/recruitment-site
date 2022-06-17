@@ -6,6 +6,7 @@ export const LOGIN = 'LOGIN'
 export const LOGGEDIN = 'LOGEDIN'
 export const USERNAMETYPED = 'USERNAMETYPED'
 export const PASSWORDTYPED = 'PASSWORDTYPED'
+export const SETTHEME = 'SETTHEME'
 
 
 export const loggedIn = (token) => {
@@ -29,6 +30,13 @@ export const passwordTyped = (password) => {
     }
 }
 
+export const themeSet = (theme)=>{
+    return {
+        "type" : SETTHEME,
+        "payload" : theme
+    }
+}
+
 export const login = (username,password) => {
     const URL = 'http://127.0.0.1:8000/accounts/login'
     return function (dispatch) {
@@ -37,10 +45,10 @@ export const login = (username,password) => {
         // let password = store.getState().typed_password
         fd.append('username', username)
         fd.append('password', password)
-        axios
+        return axios
             .post(URL,fd)
             .then(res => {
-                let token = JSON.stringify(res.data)
+                let token = res.data.token
                 localStorage.setItem('token', token)
                 dispatch(loggedIn(token))
                 console.log(token)

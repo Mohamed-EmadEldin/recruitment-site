@@ -18,6 +18,7 @@ import Navigation from "./components/core/Navigation";
 import Home from "./components/home/Home";
 import AddJop from "./components/AddJop/AddJop";
 import Notifications from "./components/notifications/Notifications";
+import MyJobs from "./components/myjobs/MyJobs";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                     <Route path={"login"} element={<Login/>}></Route>
                     <Route path={"profile"} element={<Profile/>}></Route>
                     <Route path={"jobs"} element={<Jobs/>}></Route>
+                    <Route path={"myjobs"} element={<MyJobs/>}></Route>
                     <Route path={"jobs/:id"} element={<JobDetails/>}></Route>
                     <Route path={"about"} element={<About/>}></Route>
                     <Route path={"create"} element={<AddJop/>}></Route>
