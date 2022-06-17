@@ -5,7 +5,8 @@ import {useSelector} from "react-redux";
 
 const Navigation = () => {
 
-    const token = useSelector((state)=>state.token)
+    const state = useSelector((state)=>state)
+
     // let location = useLocation();
 
     // if(location.pathname === '/'){
@@ -27,9 +28,24 @@ const Navigation = () => {
                         <NavLink to={"/about"} className={'btn'}>
                             <Button label={'About'} className="p-button p-button-sm p-button-text p-button-info"></Button>
                         </NavLink>
-                        {token ? null : <NavLink to={"/login"} className={'btn'}>
+                        {state.token ? null : <NavLink to={"/login"} className={'btn'}>
                             <Button label={'login'} className="p-button p-button-sm p-button-text p-button-info"></Button>
                         </NavLink>}
+                       <NavLink to={"/jobs"} className={'btn'}>
+                            <Button label={'jobs wall'} className="p-button p-button-sm p-button-text p-button-info"></Button>
+                        </NavLink>
+                        {state.user_type === 'COMPANY'?
+                            <NavLink to={"/create"} className={'btn'}>
+                                <Button label={'add a job'} className="p-button p-button-sm p-button-text p-button-info"></Button>
+                            </NavLink>
+                            :null}
+                        {state.user_type === 'COMPANY' ?
+                            <NavLink to={"/myjobs"} className={'btn'}>
+                                <Button label={'my jobs'}
+                                        className="p-button p-button-sm p-button-text p-button-info"></Button>
+                            </NavLink>
+                            : null}
+
                     </li>
                 </ul>
             </div>

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 import {Card} from 'primereact/card';
 import {InputText} from "primereact/inputtext";
 
@@ -15,12 +15,15 @@ function Login() {
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const [cv, setUser] = useState('')
+    const navigate = useNavigate()
 
 
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
-        dispatch(login(username,password))
+        dispatch(login(username,password)).then(() => {
+           navigate("/profile")
+        })
         // const fd = new FormData()
         // fd.append('username',username)
         //

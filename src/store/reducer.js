@@ -1,10 +1,11 @@
-import {LOGGEDIN, PASSWORDTYPED, USERNAMETYPED} from "./actions";
+import {LOGGEDIN, PASSWORDTYPED, SETTHEME, USERNAMETYPED} from "./actions";
 import {applyMiddleware, createStore} from "redux";
 import thunkMiddleware from 'redux-thunk'
 const initialState = {
     "token": null,
     "userName": '',
     "user_type": '',
+    "user_id": '',
     'can_apply': false,
     'can_post': false,
     'typed_userName': '',
@@ -33,6 +34,16 @@ const reducer = (state = initialState, action) =>
         return  {
             ...state,
             typed_password: action.payload
+        }
+    }
+    if ( action.type === SETTHEME) {
+
+        return  {
+            ...state,
+            user_type: action.payload.user_type,
+            userName: action.payload.userName,
+            can_apply: action.payload.can_apply,
+            user_id: action.payload.user_id,
         }
     }
 

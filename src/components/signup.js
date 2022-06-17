@@ -55,7 +55,10 @@ function Signup() {
         fd.append('date_of_birth', dataOfBirth)
         if (userType === 'DEVELOPER') {
             fd.append('cv', file, 'cv')
-            fd.append('tags', tags)
+            for(let tag of tags){
+                fd.append('tags', tag.toString())
+            }
+
 
         } else {
             fd.append('history', history)

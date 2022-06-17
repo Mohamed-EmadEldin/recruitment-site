@@ -5,6 +5,9 @@ import {Button} from "primereact/button";
 import {MultiSelect} from "primereact/multiselect";
 
 import './AddJop.css'
+import axios from "axios";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 let CreateForm = () => {
 
@@ -12,27 +15,33 @@ let CreateForm = () => {
     let [name, setName] = useState('')
     let [description, setDescription] = useState('')
     let [image, setImage] = useState('')
-    let [tags, setTags] = useState([])
-    let [selectedTags, setSelectedTags] = useState(null);
+    let state = useSelector(state => state)
+    const [availableTags, setavaliableTags] = useState([])
+    const [tags, setTags] = useState('')
+    const navigate = useNavigate()
 
     let create = async () => {
-        let url = process.env.REACT_APP_CREATE_JOB
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token c0f676c51732e9a9f584e1958114cd42cae88b7b',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
+        let url = "http://localhost:8000/jobs/create"
+        const fd = new FormData()
+        fd.append('name',name)
+        fd.append('Description',description)
+        fd.append('image',image)
+        // fd.append('status',"O")
+
+        for(let tag of tags) {
+            fd.append('tags',tag.toString())
+        }
+        fd.append('created_by',state.user_id.toString())
+        const response = await axios.post(url, /*{
                 "name": name,
                 "Description": description,
                 "image": image,
-                "created_by": 3, //TODO: remove after the new serializer
-                "status": "O"
-                //TODO: add tags
-            })
-        });
+                // "created_by": 3, //TODO: remove after the new serializer
+                "status": "O",
+                "tags":selectedTags.map(tag => tag.id.toString()),
+                "created_by":state.user_id.toString()
+            }*/
+       fd );
         return response.json();
     }
 
@@ -57,22 +66,50 @@ let CreateForm = () => {
         }
     }
 
+    // useEffect(() => {
+    //     setToken(localStorage.getItem('token') || '');
+    //     if (!(token === '')) {
+    //         let url = process.env.REACT_APP_TAGS_URL
+    //         fetch(url, {
+    //             method: 'GET'
+    //         }).then(response => response.json())
+    //             .then(data => setTags(data))
+    //             .catch(e => console.log(e))
+    //     }
+    // }, [token])
     useEffect(() => {
-        setToken(localStorage.getItem('token') || '');
-        if (!(token === '')) {
-            let url = process.env.REACT_APP_TAGS_URL
-            fetch(url, {
-                method: 'GET'
-            }).then(response => response.json())
-                .then(data => setTags(data))
-                .catch(e => console.log(e))
-        }
-    }, [token])
+        setToken(localStorage.getItem('token') || '')
+        axios.get('http://127.0.0.1:8000/tags/list')
+            .then((res) => {
+                console.log(res.data.map(generateAvalableTalsList))
+                setavaliableTags(res.data.map(generateAvalableTalsList))
+            })
+    }, [])
 
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        let url = "http://localhost:8000/jobs/create"
+        const fd = new FormData()
+        fd.append('name',name)
+        fd.append('Description',description)
+        fd.append('image',image)
+        // fd.append('status',"O")
+
+        for(let tag of tags) {
+            fd.append('tags',tag.toString())
+        }
+        fd.append('created_by',state.user_id.toString())
+        axios.post(url,fd).then((response)=>{
+            console.log(response.data)
+            navigate('/jobs')
+        })
+    }
     let loginForm = () => {
         return (
             <form action="#"
-                  className={'create-form d-flex flex-column container border border-secondary border-opacity-50'}>
+                  className={'create-form d-flex flex-column container border border-secondary border-opacity-50'}
+            onSubmit={handleSubmit}
+            >
                 <p className={'h4 text-center'}>Create Job</p>
                 <div className="field">
                     <label htmlFor="job-name" className="text-start block">Job name</label>
@@ -105,17 +142,23 @@ let CreateForm = () => {
                 </div>
                 <div className="field">
                     <label htmlFor="tags" className="text-start block">tags</label>
-                    <MultiSelect id={"tags"} value={selectedTags} options={tags} className={'form-control'}
-                                 onChange={(Event) => setSelectedTags(Event.value)} optionLabel="name"
-                                 placeholder="Select tags" display="chip"/>
+                    {/*<MultiSelect id={"tags"} value={selectedTags} options={tags} className={'form-control'}*/}
+                    {/*             onChange={(Event) => {setSelectedTags(Event.value)*/}
+                    {/*                 console.log(selectedTags)*/}
+                    {/*             }} optionLabel="name"*/}
+                    {/*              display="chip"/>*/}
+                    <MultiSelect value={tags} options={availableTags} onChange={(e) => setTags(e.value)}/>
+
                     <small id="username1-help" className="text-start block">choose tags from list.</small>
                 </div>
-                <Button onClick={AddJop} className={'my-4 p-button p-button-rounded align-self-start'}
+                <Button  className={'my-4 p-button p-button-rounded align-self-start'}
                         type="submit">Add job</Button>
             </form>
         )
     }
-
+    const generateAvalableTalsList = (tag) => ({
+        label: tag.name, value: tag.id
+    })
     return (
         <div className={'create-form d-flex justify-content-center align-content-center vh-100'}>
             {loginForm()}
