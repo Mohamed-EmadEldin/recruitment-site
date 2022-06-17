@@ -50,3 +50,17 @@
   width:100%;
   gap:10px
 }
+
+* {
+  color: #e8e6e3;
+}
+
+body {
+  background-color: #17212f !important;
+  overflow: hidden;
+}
+
+p-card {
+  background-color: #181a1b !important;
+}
+

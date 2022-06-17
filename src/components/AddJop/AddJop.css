@@ -1,0 +1,6 @@
+.create-form {
+    height: fit-content;
+    width: 70%;
+    margin-left: 15%;
+    overflow: auto;
+}
