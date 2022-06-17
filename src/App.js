@@ -17,6 +17,7 @@ import Error from "./components/core/Error";
 import Navigation from "./components/core/Navigation";
 import Home from "./components/home/Home";
 import AddJop from "./components/AddJop/AddJop";
+import Notifications from "./components/notifications/Notifications";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
                     <Route path={"jobs/:id"} element={<JobDetails/>}></Route>
                     <Route path={"about"} element={<About/>}></Route>
                     <Route path={"create"} element={<AddJop/>}></Route>
+                    <Route path={"notifications"} element={<Notifications/>}></Route>
                     <Route path={"*"} element={<Error/>}></Route>
                 </Routes>
             </BrowserRouter>
