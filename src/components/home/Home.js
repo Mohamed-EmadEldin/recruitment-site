@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 let Home = () => {
     const home = (
         <div className="grid grid-nogutter surface-0 text-800">
-            <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+            <div className="col-6 md:col-6 p-6 text-center md:text-left flex align-items-center ">
                 <section>
                     <span className="block text-6xl font-bold mb-1">FossJobs</span>
                     <br/>
@@ -23,7 +23,7 @@ let Home = () => {
                     </NavLink>
                 </section>
             </div>
-            <div className="col-12 md:col-6 overflow-hidden">
+            <div className="col-6 md:col-6 overflow-hidden">
                 <img src={"assets/images/home_image.png"} alt="home_image"
                      className="md:ml-auto block md:h-full align-items-center"
                      style={{clipPath: 'polygon(10% 0, 100% 0%, 100% 100%, 0 100%)'}} draggable={"false"}/>

@@ -47,7 +47,7 @@ let JobDetails = () => {
     )
 
     const applyButton = (
-            <NavLink to={'...'} className={'btn'}>
+            <NavLink to={'/jobs/list'} className={'btn'}>
                 <Button className={'p-button p-button-outlined p-button-rounded'}
                         label={'Apply'} onClick={hitApplyToJob}></Button>
             </NavLink>

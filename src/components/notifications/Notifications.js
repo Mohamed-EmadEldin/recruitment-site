@@ -22,8 +22,6 @@ let Notifications = () => {
                     alert('error retrieving notifications')
                     console.log(error)
                 })
-        }else {
-            alert('not authorized')
         }
     }, [token])
 
