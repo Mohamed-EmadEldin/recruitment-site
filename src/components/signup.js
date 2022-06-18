@@ -74,17 +74,24 @@ function Signup() {
             //         // 'Access-Control-Allow-Origin': '*',
             //     },
             // })
-            let res = await axios.post('http://127.0.0.1:8000/accounts/signup', fd)
+            let res = await fetch('http://127.0.0.1:8000/accounts/signup', {
+                method:"POST",
+                body:fd
+            })
             console.log('ress', JSON.stringify(res.data))
         } catch (err) {
             console.log('err', err)
         }
     }
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/tags/list')
+        fetch('http://127.0.0.1:8000/tags/list')
+            .then((res)=>{
+                console.log(res)
+              return  res.json()
+            })
             .then((res) => {
-                console.log(res.data)
-                setavaliableTags(res.data.map(generateAvalableTalsList))
+                console.log(res)
+                setavaliableTags(res.map(generateAvalableTalsList))
             })
     }, [])
     /* Helper functions*/

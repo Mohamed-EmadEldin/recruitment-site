@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import {Image} from "primereact/image";
 import {Button} from "primereact/button";
 import {applyToJob} from "../../store/actions";
@@ -12,6 +12,7 @@ let JobDetails = () => {
     let [job, setJob] = useState([])
     let {id} = useParams()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     useEffect(() => {
         let url = process.env.REACT_APP_JOB_DETAILS_URL + id
         fetch(url)
@@ -36,6 +37,7 @@ let JobDetails = () => {
         axios.post(`http://127.0.0.1:8000/jobs/apply/${job.id}`)
             .then((res)=>{
                 dispatch(applyToJob())
+                navigate('/jobs')
                 alert(res.data)
             })
     }
