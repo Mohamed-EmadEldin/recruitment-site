@@ -7,7 +7,7 @@ import axios from "axios";
 
 const MyJobCard = ({job}) => {
     const header = (
-        <NavLink to={`/jobs/${job.id}`} className={'btn'}>
+        <NavLink to={`/myjobs/${job.id}`} className={'btn'}>
             <Image src={`${job.image}`} imageClassName={'rounded img-fluid'} name={`${job.image} image`}
                    width={'250'} alt={`${job.name}`} preview></Image>
         </NavLink>

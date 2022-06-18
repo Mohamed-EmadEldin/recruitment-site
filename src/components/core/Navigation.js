@@ -1,18 +1,46 @@
-import {NavLink} from "react-router-dom"; //useLocation
+import {NavLink, useNavigate} from "react-router-dom"; //useLocation
 import {Button} from "primereact/button";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
+import {logout} from "../../store/actions";
 
 
 const Navigation = () => {
 
     const state = useSelector((state)=>state)
+    const navigate = useNavigate()
 
     // let location = useLocation();
 
     // if(location.pathname === '/'){
     //     return null
     // }
+    const dispatch = useDispatch()
+    const hitLogout = () => {
+        // axios({
+        //     method: 'get',
+        //         url: "http://127.0.0.1:8000/accounts/logout",
+        //     //     data: fd,
+        //         headers: {
+        //             // 'Content-Type': `multipart/form-data`,
+        //             'Access-Control-Allow-Origin': '*',
+        //         },
+        // })
+        fetch("http://127.0.0.1:8000/accounts/logout",{
+            mode:"no-cors",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        })
+            .then(()=>{
+                dispatch(logout)
+                localStorage.removeItem('token')
+                navigate('/')
+            }
 
+        )
+    }
     return (
         <nav className="navbar navbar-expand-lg navbar-expand-md mx-5">
             <NavLink to={""}>
@@ -44,7 +72,12 @@ const Navigation = () => {
                                 <Button label={'my jobs'}
                                         className="p-button p-button-sm p-button-text p-button-info"></Button>
                             </NavLink>
+
+
                             : null}
+                        {state.token ?
+                            <Button label={'logout'} className="p-button p-button-sm p-button-text p-button-info" onClick={hitLogout}></Button>
+                        :null}
 
                     </li>
                 </ul>

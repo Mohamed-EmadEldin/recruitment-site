@@ -19,6 +19,7 @@ import Home from "./components/home/Home";
 import AddJop from "./components/AddJop/AddJop";
 import Notifications from "./components/notifications/Notifications";
 import MyJobs from "./components/myjobs/MyJobs";
+import MyJobDetails from "./components/myjobs/MyJobDetails";
 
 
 function App() {
@@ -27,13 +28,14 @@ function App() {
             <BrowserRouter>
                 <Navigation/>
                 <Routes>
-                    <Route path={"/"} element={<Signup/>}></Route>
+                    <Route path={"/"} element={<Home/>}></Route>
                     <Route path={"signup"} element={<Signup/>}></Route>
                     <Route path={"login"} element={<Login/>}></Route>
                     <Route path={"profile"} element={<Profile/>}></Route>
                     <Route path={"jobs"} element={<Jobs/>}></Route>
                     <Route path={"myjobs"} element={<MyJobs/>}></Route>
                     <Route path={"jobs/:id"} element={<JobDetails/>}></Route>
+                    <Route path={"myjobs/:id"} element={<MyJobDetails/>}></Route>
                     <Route path={"about"} element={<About/>}></Route>
                     <Route path={"create"} element={<AddJop/>}></Route>
                     <Route path={"notifications"} element={<Notifications/>}></Route>

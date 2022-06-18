@@ -22,6 +22,7 @@ axios.interceptors.request.use((request) => {
     let token = localStorage.getItem('token')
     console.log(token)
     request.headers.Authorization = "Token "+token
+    // request.headers['Access-Control-Allow-Origin']= '*'
     console.log(request)
     return request
 })

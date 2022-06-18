@@ -7,6 +7,7 @@ export const LOGGEDIN = 'LOGEDIN'
 export const USERNAMETYPED = 'USERNAMETYPED'
 export const PASSWORDTYPED = 'PASSWORDTYPED'
 export const SETTHEME = 'SETTHEME'
+export const LOGOUT = 'LOGOUT'
 
 
 export const loggedIn = (token) => {
@@ -36,7 +37,13 @@ export const themeSet = (theme)=>{
         "payload" : theme
     }
 }
+export const logout = ()=>{
 
+    return {
+        "type" : LOGOUT,
+        "payload" : ''
+    }
+}
 export const login = (username,password) => {
     const URL = 'http://127.0.0.1:8000/accounts/login'
     return function (dispatch) {
@@ -45,13 +52,19 @@ export const login = (username,password) => {
         // let password = store.getState().typed_password
         fd.append('username', username)
         fd.append('password', password)
-        return axios
-            .post(URL,fd)
+        return fetch({
+            method:'POST',
+            data:fd
+        }).then((res)=>{
+            console.log(res)
+            return res.json()
+        })
             .then(res => {
-                let token = res.data.token
-                localStorage.setItem('token', token)
-                dispatch(loggedIn(token))
-                console.log(token)
+                // let token = res.data.token
+                // localStorage.setItem('token', token)
+                // dispatch(loggedIn(token))
+                // console.log(token)
+                console.log(res)
             })
 
     }
