@@ -9,6 +9,7 @@ import {SelectButton} from "primereact/selectbutton";
 
 
 import {MultiSelect} from 'primereact/multiselect';
+import {useNavigate} from "react-router-dom";
 
 
 function Signup() {
@@ -36,13 +37,13 @@ function Signup() {
         {label: 'Company', value: 'COMPANY'},
     ];
 
-
+    const navigate = useNavigate()
     const fileHandler = (e) => {
         setfile(e.target.files[0])
         console.log(e.target.files[0])
         console.log(file.name)
     }
-    const handleSubmit = async (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault()
         const fd = new FormData()
         fd.append('username', username)
@@ -74,11 +75,16 @@ function Signup() {
             //         // 'Access-Control-Allow-Origin': '*',
             //     },
             // })
-            let res = await fetch('http://127.0.0.1:8000/accounts/signup', {
+            fetch('http://127.0.0.1:8000/accounts/signup', {
                 method:"POST",
                 body:fd
+            }).then((res)=>{
+                return res.json()
             })
-            console.log('ress', JSON.stringify(res.data))
+            .then(()=>{
+                navigate('/login')
+            })
+
         } catch (err) {
             console.log('err', err)
         }
