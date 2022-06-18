@@ -22,7 +22,7 @@ function Login() {
     const handleSubmit = async (e)=>{
         e.preventDefault()
         dispatch(login(username,password)).then(() => {
-           // navigate("/profile")
+            navigate("/profile")
         })
         // const fd = new FormData()
         // fd.append('username',username)

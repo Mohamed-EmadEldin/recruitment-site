@@ -41,7 +41,6 @@ export const logout = ()=>{
 
     return {
         "type" : LOGOUT,
-        "payload" : ''
     }
 }
 export const login = (username,password) => {

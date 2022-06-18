@@ -36,10 +36,10 @@ const reducer = (state = initialState, action) =>
             typed_password: action.payload
         }
     }
-    if ( action.type === LOGOUT) {
+    if ( action.type === 'LOGOUT') {
 
+        console.log('sasas')
         return  {
-            ...state,
             token: null,
             userName: '',
             user_type: '',
@@ -48,7 +48,6 @@ const reducer = (state = initialState, action) =>
             can_post: false,
             typed_userName: '',
             typed_password: '',
-
         }
     }
     if ( action.type === SETTHEME) {

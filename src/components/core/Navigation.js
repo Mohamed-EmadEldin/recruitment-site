@@ -2,7 +2,7 @@ import {NavLink, useNavigate} from "react-router-dom"; //useLocation
 import {Button} from "primereact/button";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
-import {logout} from "../../store/actions";
+import {LOGOUT, logout} from "../../store/actions";
 
 
 const Navigation = () => {
@@ -34,7 +34,10 @@ const Navigation = () => {
             },
         })
             .then(()=>{
-                dispatch(logout)
+                dispatch({
+                    "type" : LOGOUT,
+                })
+                console.log(state)
                 localStorage.removeItem('token')
                 navigate('/')
             }
@@ -75,7 +78,15 @@ const Navigation = () => {
 
 
                             : null}
-                        {state.token ?
+                        {state.user_type === 'DEVELOPER' ?
+                            <NavLink to={"/notifications"} className={'btn'}>
+                                <Button label={'notifications'}
+                                        className="p-button p-button-sm p-button-text p-button-info"></Button>
+                            </NavLink>
+
+
+                            : null}
+                        {state.token  ?
                             <Button label={'logout'} className="p-button p-button-sm p-button-text p-button-info" onClick={hitLogout}></Button>
                         :null}
 
