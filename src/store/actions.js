@@ -45,10 +45,17 @@ export const login = (username,password) => {
         // let password = store.getState().typed_password
         fd.append('username', username)
         fd.append('password', password)
-        return axios
-            .post(URL,fd)
+        return fetch(URL,{
+            method:"POST",
+            body:fd
+        }) .then((response) => {
+            console.log(response)
+            return response.json()
+
+        })
             .then(res => {
-                let token = res.data.token
+                console.log(res)
+                let token = res.token
                 localStorage.setItem('token', token)
                 dispatch(loggedIn(token))
                 console.log(token)
