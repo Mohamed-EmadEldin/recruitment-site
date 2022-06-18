@@ -2,15 +2,16 @@ import {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
 import {Image} from "primereact/image";
 import {Button} from "primereact/button";
-
+import {applyToJob} from "../../store/actions";
 import './JobDetails.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 
 let JobDetails = () => {
 
     let [job, setJob] = useState([])
     let {id} = useParams()
-
+    const dispatch = useDispatch()
     useEffect(() => {
         let url = process.env.REACT_APP_JOB_DETAILS_URL + id
         fetch(url)
@@ -31,6 +32,13 @@ let JobDetails = () => {
         </div>)
     }
     const state = useSelector(state => state)
+    const hitApplyToJob = ()=>{
+        axios.post(`http://127.0.0.1:8000/jobs/apply/${job.id}`)
+            .then((res)=>{
+                dispatch(applyToJob())
+                alert(res.data)
+            })
+    }
     const backButton = (
             <NavLink to={'/jobs'} className={'btn'}>
                 <Button className={'p-button p-button-outlined p-button-rounded'}
@@ -41,7 +49,7 @@ let JobDetails = () => {
     const applyButton = (
             <NavLink to={'...'} className={'btn'}>
                 <Button className={'p-button p-button-outlined p-button-rounded'}
-                        label={'Apply'}></Button>
+                        label={'Apply'} onClick={hitApplyToJob}></Button>
             </NavLink>
     )
 
@@ -66,7 +74,7 @@ let JobDetails = () => {
                     <div className={'d-flex flex-column col-lg-1 justify-content-center'}>
                         {
 
-                          state.user_type=== 'DEVELOPER'?  applyButton : null
+                            (state.user_type=== 'DEVELOPER' && state.can_apply)?  applyButton : null
                         }
                         {backButton}
                     </div>

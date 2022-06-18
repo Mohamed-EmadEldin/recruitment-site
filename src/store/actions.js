@@ -8,6 +8,7 @@ export const USERNAMETYPED = 'USERNAMETYPED'
 export const PASSWORDTYPED = 'PASSWORDTYPED'
 export const SETTHEME = 'SETTHEME'
 export const LOGOUT = 'LOGOUT'
+export const APPLYTOJOB = 'APPLYTOJOB'
 
 
 export const loggedIn = (token) => {
@@ -41,6 +42,12 @@ export const logout = ()=>{
 
     return {
         "type" : LOGOUT,
+    }
+}
+
+export const applyToJob = ()=>{
+    return {
+        "type" : APPLYTOJOB
     }
 }
 export const login = (username,password) => {

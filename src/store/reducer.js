@@ -1,6 +1,7 @@
-import {LOGGEDIN, LOGOUT, PASSWORDTYPED, SETTHEME, USERNAMETYPED} from "./actions";
+import {APPLYTOJOB, LOGGEDIN, LOGOUT, PASSWORDTYPED, SETTHEME, USERNAMETYPED} from "./actions";
 import {applyMiddleware, createStore} from "redux";
 import thunkMiddleware from 'redux-thunk'
+import App from "../App";
 const initialState = {
     "token": null,
     "userName": '',
@@ -36,9 +37,19 @@ const reducer = (state = initialState, action) =>
             typed_password: action.payload
         }
     }
+
+
+    if ( action.type === APPLYTOJOB) {
+
+        return  {
+            ...state,
+            can_apply: false
+        }
+    }
+
     if ( action.type === 'LOGOUT') {
 
-        console.log('sasas')
+
         return  {
             token: null,
             userName: '',
